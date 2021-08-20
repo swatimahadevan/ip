@@ -1,10 +1,9 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Duke {
 
     static String horizontalDividerLine = "____________________________________________________________";
-    private static String[] tasksList = new String[100];
-    private static Boolean[] isTaskDone = new Boolean[100];
-    private static int numberOfTasks = 0;
+    private static ArrayList<Task> tasks = new ArrayList<>();
 
     public static void greet() {
         String logo = " ____        _        \n"
@@ -25,8 +24,7 @@ public class Duke {
     }
 
     public static void addTaskToList(String task){
-        tasksList[numberOfTasks] = task;
-        isTaskDone[numberOfTasks++] = false;
+        tasks.add(new Task(task));
         System.out.println(horizontalDividerLine);
         System.out.println("added: " + task);
         System.out.println(horizontalDividerLine);
@@ -35,17 +33,18 @@ public class Duke {
     public static void printTasksList(){
         System.out.println(horizontalDividerLine);
         System.out.println("Here are the tasks in your list:");
-        for(int i = 0; i < numberOfTasks; i ++){
-            System.out.println(i+1 + ". " + (isTaskDone[i] ? "[X] " : "[ ] ") + tasksList[i]);
+        int i = 1;
+        for(Task item: tasks){
+            System.out.println((i++) + ". " + item.getStatusIcon() + " " + item.getDescription());
         }
         System.out.println(horizontalDividerLine);
     }
 
     public static void markTaskAsDone(int taskIndex){
-        isTaskDone[taskIndex- 1] = true;
+        tasks.get(taskIndex - 1).markAsDone();
         System.out.println(horizontalDividerLine);
         System.out.println("Nice! I've marked this task as done:");
-        System.out.println("[X] " + tasksList[taskIndex- 1]);
+        System.out.println("[X] " + tasks.get(taskIndex - 1).getDescription());
         System.out.println(horizontalDividerLine);
     }
 
