@@ -3,6 +3,7 @@ public class Duke {
 
     static String horizontalDividerLine = "____________________________________________________________";
     private static String[] tasksList = new String[100];
+    private static Boolean[] isTaskDone = new Boolean[100];
     private static int numberOfTasks = 0;
 
     public static void greet() {
@@ -24,17 +25,27 @@ public class Duke {
     }
 
     public static void addTaskToList(String task){
-        tasksList[numberOfTasks++] = task;
+        tasksList[numberOfTasks] = task;
+        isTaskDone[numberOfTasks++] = false;
         System.out.println(horizontalDividerLine);
-        System.out.println("Added: " + task);
+        System.out.println("added: " + task);
         System.out.println(horizontalDividerLine);
     }
 
     public static void printTasksList(){
         System.out.println(horizontalDividerLine);
+        System.out.println("Here are the tasks in your list:");
         for(int i = 0; i < numberOfTasks; i ++){
-            System.out.println(i+1 + ". " + tasksList[i]);
+            System.out.println(i+1 + ". " + (isTaskDone[i] ? "[X] " : "[ ] ") + tasksList[i]);
         }
+        System.out.println(horizontalDividerLine);
+    }
+
+    public static void markTaskAsDone(int taskIndex){
+        isTaskDone[taskIndex- 1] = true;
+        System.out.println(horizontalDividerLine);
+        System.out.println("Nice! I've marked this task as done:");
+        System.out.println("[X] " + tasksList[taskIndex- 1]);
         System.out.println(horizontalDividerLine);
     }
 
@@ -43,9 +54,15 @@ public class Duke {
         greet();
         String input = in.nextLine();
         while(!input.equals("bye")){
+            String[] words = input.split(" ");
             if(input.equals("list")) {
                 printTasksList();
-            } else {
+            }
+            else if(words[0].equals("done")) {
+                int taskIndex = Integer.parseInt(words[1]);
+                markTaskAsDone(taskIndex);
+            }
+            else {
                 addTaskToList(input);
             }
             input = in.nextLine();
