@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    private static ArrayList<Task> tasks = new ArrayList<>();
+    private static ArrayList<Task> tasksList = new ArrayList<>();
 
     public static void printDividerLine() {
         System.out.println("____________________________________________________________");
@@ -27,7 +27,7 @@ public class Duke {
     }
 
     public static void addTaskToList(String task) {
-        tasks.add(new Task(task));
+        tasksList.add(new Task(task));
         printDividerLine();
         System.out.println("added: " + task);
         printDividerLine();
@@ -37,17 +37,17 @@ public class Duke {
         printDividerLine();
         System.out.println("Here are the tasks in your list:");
         int i = 1;
-        for(Task item: tasks){
+        for(Task item: tasksList) {
             System.out.println((i++) + ". " + item.getStatusIcon() + " " + item.getDescription());
         }
         printDividerLine();
     }
 
     public static void markTaskAsDone(int taskIndex) {
-        tasks.get(taskIndex - 1).markAsDone();
+        tasksList.get(taskIndex - 1).markAsDone();
         printDividerLine();
         System.out.println("Nice! I've marked this task as done:");
-        System.out.println("[X] " + tasks.get(taskIndex - 1).getDescription());
+        System.out.println("[X] " + tasksList.get(taskIndex - 1).getDescription());
         printDividerLine();
     }
 
@@ -55,7 +55,7 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         printGreetMessage();
         String input = in.nextLine();
-        while(!input.equals("bye")){
+        while(!input.equals("bye")) {
             String[] words = input.split(" ");
             if(input.equals("list")) {
                 printTasksList();
