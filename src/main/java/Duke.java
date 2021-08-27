@@ -23,9 +23,9 @@ public class Duke {
     public static void addTaskToList(String task) {
         if(task.startsWith("deadline")) {
             addDeadline(task);
-        } else if(task.startsWith("event")){
+        } else if(task.startsWith("event")) {
             addEvent(task);
-        } else if(task.startsWith("todo")){
+        } else if(task.startsWith("todo")) {
             addToDo(task);
         } else {
             tasksList.add(new Task(task));
@@ -80,24 +80,31 @@ public class Duke {
         printDividerLine();
     }
 
+    public static String handleInput(String input) {
+        String[] wordsInInputString = input.split(" ");
+        if(input.equals("bye")) {
+            return "End";
+        }
+        if(input.equals("list")) {
+            printTasksList();
+        }
+        else if(wordsInInputString[0].equals("done")) {
+            int taskIndex = Integer.parseInt(wordsInInputString[1]);
+            markTaskAsDone(taskIndex);
+        }
+        else {
+            addTaskToList(input);
+        }
+        return "Continue";
+    }
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         printGreetMessage();
         String input = in.nextLine();
-        while(!input.equals("bye")) {
-            String[] words = input.split(" ");
-            if(input.equals("list")) {
-                printTasksList();
-            }
-            else if(words[0].equals("done")) {
-                int taskIndex = Integer.parseInt(words[1]);
-                markTaskAsDone(taskIndex);
-            }
-            else {
-                addTaskToList(input);
-            }
+        do {
             input = in.nextLine();
-        }
+        } while (handleInput(input) == "Continue");
         printByeMessage();
         in.close();
     }
