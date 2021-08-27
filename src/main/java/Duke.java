@@ -9,14 +9,21 @@ public class Duke {
     }
 
     public static void printGreetMessage() {
+        String logo = " _____    ______      \n"
+                + "|_   _|   |  _  \\     \n"
+                + "  | | ___ | | | |___  \n"
+                + "  | |/ _ \\| | | / _ \\ \n"
+                + "  | | (_) | |/ / (_) |\n"
+                + "  \\_/\\___/|___/ \\___/ \n";
+        System.out.println(logo);
         printDividerLine();
-        System.out.println("Hello, I'm Duke\n" + "What can I do for you?");
+        System.out.println("Hello, I'm ToDo, your personal planner!\n" + "What's on today's agenda?");
         printDividerLine();
     }
 
     public static void printByeMessage() {
         printDividerLine();
-        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println("Bye!");
         printDividerLine();
     }
 
@@ -101,7 +108,7 @@ public class Duke {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         printGreetMessage();
-        String input = in.nextLine();
+        String input;
         do {
             input = in.nextLine();
         } while (handleInput(input) == "Continue");
