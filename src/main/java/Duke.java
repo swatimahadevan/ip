@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-
     private static ArrayList<Task> tasksList = new ArrayList<>();
 
     public static void printDividerLine() {
@@ -10,12 +9,6 @@ public class Duke {
     }
 
     public static void printGreetMessage() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
         printDividerLine();
         System.out.println("Hello, I'm Duke\n" + "What can I do for you?");
         printDividerLine();
@@ -30,16 +23,16 @@ public class Duke {
     public static void addTaskToList(String task) {
         if(task.startsWith("deadline")) {
             addDeadline(task);
-        } else if(task.startsWith("event")) {
+        } else if(task.startsWith("event")){
             addEvent(task);
-        } else if(task.startsWith("todo")) {
+        } else if(task.startsWith("todo")){
             addToDo(task);
         } else {
             tasksList.add(new Task(task));
         }
 
         printDividerLine();
-        System.out.println("Got it. I've added this task: ");
+        System.out.println("Got it. I've added this task:");
         System.out.println(tasksList.get(tasksList.size() - 1));
         System.out.println("Now you have " + tasksList.size() + " tasks in the list.");
         printDividerLine();
@@ -53,8 +46,8 @@ public class Duke {
     private static void addEvent(String input) {
         input = input.split("event")[1].trim();
         String description = input.split("/at")[0].trim();
-        String at = input.split("/at")[1].trim();
-        tasksList.add(new Event(description, at));
+        String time = input.split("/at")[1].trim();
+        tasksList.add(new Event(description, time));
     }
 
     private static void addDeadline(String input) {
