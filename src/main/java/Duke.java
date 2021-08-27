@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+
     private static ArrayList<Task> tasksList = new ArrayList<>();
 
     public static void printDividerLine() {
@@ -27,10 +28,40 @@ public class Duke {
     }
 
     public static void addTaskToList(String task) {
-        tasksList.add(new Task(task));
+        if(task.startsWith("deadline")) {
+            addDeadline(task);
+        } else if(task.startsWith("event")) {
+            addEvent(task);
+        } else if(task.startsWith("todo")) {
+            addToDo(task);
+        } else {
+            tasksList.add(new Task(task));
+        }
+
         printDividerLine();
-        System.out.println("added: " + task);
+        System.out.println("Got it. I've added this task: ");
+        System.out.println(tasksList.get(tasksList.size() - 1));
+        System.out.println("Now you have " + tasksList.size() + " tasks in the list.");
         printDividerLine();
+    }
+
+    private static void addToDo(String input) {
+        input = input.split("todo")[1].trim();
+        tasksList.add(new ToDo(input));
+    }
+
+    private static void addEvent(String input) {
+        input = input.split("event")[1].trim();
+        String description = input.split("/at")[0].trim();
+        String at = input.split("/at")[1].trim();
+        tasksList.add(new Event(description, at));
+    }
+
+    private static void addDeadline(String input) {
+        input = input.split("deadline")[1].trim();
+        String description = input.split("/by")[0].trim();
+        String by = input.split("/by")[1].trim();
+        tasksList.add(new Deadline(description, by));
     }
 
     public static void printTasksList() {
@@ -38,16 +69,21 @@ public class Duke {
         System.out.println("Here are the tasks in your list:");
         int i = 1;
         for(Task item: tasksList) {
-            System.out.println((i++) + ". " + item.getStatusIcon() + " " + item.getDescription());
+            System.out.println((i++) + ". " + item);
         }
         printDividerLine();
     }
 
     public static void markTaskAsDone(int taskIndex) {
-        tasksList.get(taskIndex - 1).markAsDone();
-        printDividerLine();
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("[X] " + tasksList.get(taskIndex - 1).getDescription());
+        if(taskIndex <= tasksList.size()) {
+            tasksList.get(taskIndex - 1).markAsDone();
+            printDividerLine();
+            System.out.println("Nice! I've marked this task as done:");
+            System.out.println("[X] " + tasksList.get(taskIndex - 1).getDescription());
+        } else {
+            printDividerLine();
+            System.out.println("Invalid index!");
+        }
         printDividerLine();
     }
 
