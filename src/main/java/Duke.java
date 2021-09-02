@@ -94,12 +94,10 @@ public class Duke {
         }
         if (input.equals("list")) {
             printTasksList();
-        }
-        else if (wordsInInputString[0].equals("done")) {
+        } else if (wordsInInputString[0].equals("done")) {
             int taskIndex = Integer.parseInt(wordsInInputString[1]);
             markTaskAsDone(taskIndex);
-        }
-        else {
+        } else {
             addTaskToList(input);
         }
         return "Continue";
