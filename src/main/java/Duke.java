@@ -28,11 +28,11 @@ public class Duke {
     }
 
     public static void addTaskToList(String task) {
-        if(task.startsWith("deadline")) {
+        if (task.startsWith("deadline")) {
             addDeadline(task);
-        } else if(task.startsWith("event")) {
+        } else if (task.startsWith("event")) {
             addEvent(task);
-        } else if(task.startsWith("todo")) {
+        } else if (task.startsWith("todo")) {
             addToDo(task);
         } else {
             tasksList.add(new Task(task));
@@ -68,14 +68,14 @@ public class Duke {
         printDividerLine();
         System.out.println("Here are the tasks in your list:");
         int i = 1;
-        for(Task item: tasksList) {
+        for (Task item: tasksList) {
             System.out.println((i++) + ". " + item);
         }
         printDividerLine();
     }
 
     public static void markTaskAsDone(int taskIndex) {
-        if(taskIndex <= tasksList.size()) {
+        if (taskIndex <= tasksList.size()) {
             tasksList.get(taskIndex - 1).markAsDone();
             printDividerLine();
             System.out.println("Nice! I've marked this task as done:");
@@ -89,13 +89,13 @@ public class Duke {
 
     public static String handleInput(String input) {
         String[] wordsInInputString = input.split(" ");
-        if(input.equals("bye")) {
+        if (input.equals("bye")) {
             return "End";
         }
-        if(input.equals("list")) {
+        if (input.equals("list")) {
             printTasksList();
         }
-        else if(wordsInInputString[0].equals("done")) {
+        else if (wordsInInputString[0].equals("done")) {
             int taskIndex = Integer.parseInt(wordsInInputString[1]);
             markTaskAsDone(taskIndex);
         }
