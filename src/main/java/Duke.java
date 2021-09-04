@@ -1,3 +1,8 @@
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.ToDo;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,7 +22,7 @@ public class Duke {
                 + "  \\_/\\___/|___/ \\___/ \n";
         System.out.println(logo);
         printDividerLine();
-        System.out.println("Hello, I'm ToDo, your personal planner!\n" + "What's on today's agenda?");
+        System.out.println("Hello, I'm task.ToDo, your personal planner!\n" + "What's on today's agenda?");
         printDividerLine();
     }
 
@@ -130,7 +135,7 @@ public class Duke {
         }
         printDividerLine();
         System.out.println("Nice! I've marked this task as done:");
-        System.out.println("[\u2713] " + tasksList.get(index - 1).getDescription());
+        System.out.println("[X] " + tasksList.get(index - 1).getDescription());
         printDividerLine();
     }
 
