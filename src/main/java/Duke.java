@@ -127,6 +127,15 @@ public class Duke {
         printDividerLine();
     }
 
+    public static void deleteTaskFromList(int indexOfTask) {
+        printDividerLine();
+        System.out.println("Got it! I've removed this task:");
+        System.out.println(tasksList.get(indexOfTask - 1));
+        tasksList.remove(indexOfTask - 1);
+        System.out.println("Now you have " + tasksList.size() + " tasks in the list.");
+        printDividerLine();
+    }
+
     public static void markTaskAsDone(int index) throws DukeInvalidArgumentException {
         try {
             tasksList.get(index - 1).markAsDone();
@@ -156,6 +165,10 @@ public class Duke {
                 System.out.println("☹ OOPS!!! No such item in the list :-(");
                 printDividerLine();
             }
+        } else if (input.startsWith("delete")) {
+            int index;
+            index = Integer.parseInt(input.split("delete")[1].trim());
+            deleteTaskFromList(index);
         } else {
             addTaskToList(input);
         }
