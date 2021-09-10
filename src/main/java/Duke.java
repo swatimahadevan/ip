@@ -5,9 +5,12 @@ import task.ToDo;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Duke {
     private static ArrayList<Task> tasksList = new ArrayList<>();
+    private static Storage storage;
 
     public static void printDividerLine() {
         System.out.println("____________________________________________________________");
@@ -127,11 +130,11 @@ public class Duke {
         printDividerLine();
     }
 
-    public static void deleteTaskFromList(int indexOfTask) {
+    public static void deleteTask(int index) {
         printDividerLine();
         System.out.println("Got it! I've removed this task:");
-        System.out.println(tasksList.get(indexOfTask - 1));
-        tasksList.remove(indexOfTask - 1);
+        System.out.println(tasksList.get(index - 1));
+        tasksList.remove(index - 1);
         System.out.println("Now you have " + tasksList.size() + " tasks in the list.");
         printDividerLine();
     }
@@ -165,10 +168,10 @@ public class Duke {
                 System.out.println("☹ OOPS!!! No such item in the list :-(");
                 printDividerLine();
             }
-        } else if (input.startsWith("delete")) {
+        } else if (input.startsWith("delete")){
             int index;
             index = Integer.parseInt(input.split("delete")[1].trim());
-            deleteTaskFromList(index);
+            deleteTask(index);
         } else {
             addTaskToList(input);
         }
@@ -186,8 +189,18 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         printGreetMessage();
         String input;
+        try{
+            tasksList = Storage.loadData();
+        } catch(FileNotFoundException f) {
+            System.out.println("Error: save file not found");
+        }
         do {
             input = in.nextLine();
+            try {
+                Storage.saveData(tasksList);
+            } catch (IOException e){
+                System.out.println("Failed to write data");
+            }
         } while (handleInput(input) == "Continue");
         printByeMessage();
         in.close();
