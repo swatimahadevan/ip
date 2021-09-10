@@ -66,7 +66,6 @@ public class Storage {
         }
         return task;
     }
-
     private static String serializeTask(Task task){
         String result = "";
         result += task.getTaskType() + "|";
