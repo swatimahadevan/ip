@@ -2,6 +2,7 @@ import task.Deadline;
 import task.Event;
 import task.Task;
 import task.ToDo;
+import ui.UI;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -11,29 +12,6 @@ import java.io.IOException;
 public class Duke {
     private static ArrayList<Task> tasksList = new ArrayList<>();
     private static Storage storage;
-
-    public static void printDividerLine() {
-        System.out.println("____________________________________________________________");
-    }
-
-    public static void printGreetMessage() {
-        String logo = " _____    ______      \n"
-                + "|_   _|   |  _  \\     \n"
-                + "  | | ___ | | | |___  \n"
-                + "  | |/ _ \\| | | / _ \\ \n"
-                + "  | | (_) | |/ / (_) |\n"
-                + "  \\_/\\___/|___/ \\___/ \n";
-        System.out.println(logo);
-        printDividerLine();
-        System.out.println("Hello, I'm task.ToDo, your personal planner!\n" + "What's on today's agenda?");
-        printDividerLine();
-    }
-
-    public static void printByeMessage() {
-        printDividerLine();
-        System.out.println("Bye!");
-        printDividerLine();
-    }
 
     public static void addTaskToList(String task) {
         boolean isValidCommand = true;
@@ -52,11 +30,7 @@ public class Duke {
         }
 
         if (isValidCommand) {
-            printDividerLine();
-            System.out.println("Got it. I've added this task:");
-            System.out.println(tasksList.get(tasksList.size() - 1));
-            System.out.println("Now you have " + tasksList.size() + " tasks in the list.");
-            printDividerLine();
+            UI.addToListMessage(tasksList);
         }
     }
 
@@ -65,9 +39,7 @@ public class Duke {
         try {
             todoDescription = input.trim().split("todo")[1];
         } catch (IndexOutOfBoundsException e) {
-            printDividerLine();
-            System.out.println("☹ OOPS!!! The description of todo cannot be empty.");
-            printDividerLine();
+            UI.noDescriptionFoundMessage();
             throw new DukeInvalidArgumentException();
         }
         tasksList.add(new ToDo(todoDescription));
@@ -78,9 +50,7 @@ public class Duke {
         try {
             eventInput = input.trim().split("event")[1];
         } catch (IndexOutOfBoundsException e) {
-            printDividerLine();
-            System.out.println("☹ OOPS!!! The description of deadline cannot be empty.");
-            printDividerLine();
+            UI.noDescriptionFoundMessage();
             throw new DukeInvalidArgumentException();
         }
         String eventDescription, eventTime;
@@ -88,9 +58,7 @@ public class Duke {
             eventDescription = eventInput.split("/at")[0].trim();
             eventTime = eventInput.split("/at")[1].trim();
         } catch (IndexOutOfBoundsException e) {
-            printDividerLine();
-            System.out.println("☹ I cannot help you unless you provide the details!");
-            printDividerLine();
+            UI.invalidNumberOfParametersMessage();
             throw new DukeInvalidArgumentException();
         }
         tasksList.add(new Event(eventDescription, eventTime));
@@ -102,9 +70,7 @@ public class Duke {
         try {
             deadlineInput = input.trim().split("deadline")[1];
         } catch (IndexOutOfBoundsException e) {
-            printDividerLine();
-            System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.");
-            printDividerLine();
+            UI.noDescriptionFoundMessage();
             throw new DukeInvalidArgumentException();
         }
         String deadlineDescription, deadlineTime;
@@ -112,31 +78,15 @@ public class Duke {
             deadlineDescription = deadlineInput.split("/by")[0].trim();
             deadlineTime = deadlineInput.split("/by")[1].trim();
         } catch (IndexOutOfBoundsException e) {
-            printDividerLine();
-            System.out.println("☹ I cannot help you unless you provide the details!");
-            printDividerLine();
+            UI.invalidNumberOfParametersMessage();
             throw new DukeInvalidArgumentException();
         }
         tasksList.add(new Deadline(deadlineDescription, deadlineTime));
     }
 
-    public static void printTasksList() {
-        printDividerLine();
-        System.out.println("Here are the tasks in your list:");
-        int i = 1;
-        for (Task item: tasksList) {
-            System.out.println((i++) + ". " + item);
-        }
-        printDividerLine();
-    }
-
     public static void deleteTask(int index) {
-        printDividerLine();
-        System.out.println("Got it! I've removed this task:");
-        System.out.println(tasksList.get(index - 1));
+        UI.deleteTaskMessage(tasksList.get(index - 1).getDescription(), tasksList.size()-1);
         tasksList.remove(index - 1);
-        System.out.println("Now you have " + tasksList.size() + " tasks in the list.");
-        printDividerLine();
     }
 
     public static void markTaskAsDone(int index) throws DukeInvalidArgumentException {
@@ -145,10 +95,7 @@ public class Duke {
         } catch (IndexOutOfBoundsException e) {
             throw new DukeInvalidArgumentException();
         }
-        printDividerLine();
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("[X] " + tasksList.get(index - 1).getDescription());
-        printDividerLine();
+        UI.markTaskAsDoneMessage(tasksList.get(index - 1).getDescription());
     }
 
     public static String handleInput(String input) {
@@ -157,16 +104,14 @@ public class Duke {
             return "End";
         }
         if (input.equals("list")) {
-            printTasksList();
+            UI.printTasksList(tasksList);
         } else if (wordsInInputString[0].equals("done")) {
             int index;
             try {
                 index = Integer.parseInt(input.split("done")[1].trim());
                 markTaskAsDone(index);
             } catch (DukeInvalidArgumentException e) {
-                printDividerLine();
-                System.out.println("☹ OOPS!!! No such item in the list :-(");
-                printDividerLine();
+                UI.taskNotInListMessage();
             }
         } else if (input.startsWith("delete")){
             int index;
@@ -179,30 +124,28 @@ public class Duke {
     }
 
     private static void handleUnknownCommand(String input) throws DukeInvalidArgumentException {
-        printDividerLine();
-        System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-        printDividerLine();
+        UI.handleUnknownCommand();
         throw new DukeInvalidArgumentException();
     }
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        printGreetMessage();
+        UI.printGreetMessage();
         String input;
-        try{
+        try {
             tasksList = Storage.loadData();
-        } catch(FileNotFoundException f) {
-            System.out.println("Error: save file not found");
+        } catch (FileNotFoundException f) {
+            UI.failToWriteMessage();
         }
         do {
             input = in.nextLine();
             try {
                 Storage.saveData(tasksList);
             } catch (IOException e){
-                System.out.println("Failed to write data");
+                UI.fileNotFoundMessage();
             }
         } while (handleInput(input) == "Continue");
-        printByeMessage();
+        UI.printByeMessage();
         in.close();
     }
 }
