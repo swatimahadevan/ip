@@ -5,22 +5,39 @@ import exceptions.DukeInvalidArgumentException;
 import task.TaskList;
 import ui.UI;
 
+/**
+ * Parses user input for commands.
+ */
 public class Parser {
-    public static Command parse(TaskList tasks, String input) throws DukeInvalidArgumentException {
+
+    /**
+     * Parses user input and returns Command object to be executed.
+     * If no command has been found, return unknownCommand object.
+     *
+     * @param tasksList List of tasks
+     * @param input User input
+     * @throws DukeInvalidArgumentException If argument is in wrong format
+     * @return Respective Command object
+     */
+    public static Command parse(TaskList tasksList, String input) throws DukeInvalidArgumentException {
+
         if (input.trim().equals("bye")) {
             return new ByeCommand();
         }
+
         if (input.trim().equals("list")) {
             return new ListCommand();
         }
+
         if (input.startsWith("done")) {
             int index = -1;
             index = Integer.parseInt(input.split("done")[1].trim());
-            if(index < 1 || index > tasks.getTasks().size()){
+            if(index < 1 || index > tasksList.getTasks().size()){
                 throw new DukeInvalidArgumentException();
             }
             return new DoneCommand(index);
         }
+
         if (input.startsWith("delete")) {
             int index = -1;
             try {
@@ -28,11 +45,12 @@ public class Parser {
             }  catch (IndexOutOfBoundsException | NumberFormatException e) {
                 UI.printTaskNotInListMessage();
             }
-            if(index < 1 || index > tasks.getTasks().size()){
+            if(index < 1 || index > tasksList.getTasks().size()){
                 throw new DukeInvalidArgumentException();
             }
             return new DeleteCommand(index);
         }
+
         if (input.startsWith("todo")) {
             String description;
             try {
@@ -43,6 +61,7 @@ public class Parser {
             }
             return new ToDoCommand(description);
         }
+
         if (input.startsWith("deadline")) {
             final String TYPE = "deadline";
             String deadlineDetails;
@@ -62,6 +81,7 @@ public class Parser {
             }
             return new EventAndDeadlineCommand(TYPE, description, by);
         }
+
         if (input.startsWith("event")) {
             final String TYPE = "event";
             String eventDetails;

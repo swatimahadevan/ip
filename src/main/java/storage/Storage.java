@@ -59,6 +59,11 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Deserializes the task from string format into parsable commands
+     *
+     * @param serializedTask Task to be deserialized from string format
+     */
     private static Task deserializeTask(String serializedTask) {
         Task task = null;
         String[] splitTask = serializedTask.split("\\|");
@@ -83,6 +88,11 @@ public class Storage {
         return task;
     }
 
+    /**
+     * Serializes the task to strings in a format delimited by "|"
+     *
+     * @param task Task to be delimited
+     */
     private static String serializeTask(Task task) {
         String result = "";
         result += task.getTaskType() + "|";
