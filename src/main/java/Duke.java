@@ -32,7 +32,6 @@ public class Duke {
                 c.execute(tasks, storage);
                 isExit = c.isExit();
             } catch (DukeInvalidArgumentException e) {
-                UI.printInvalidInputMessage();
             }
         }
     }
