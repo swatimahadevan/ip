@@ -12,6 +12,10 @@ public class UI {
         System.out.println("____________________________________________________________");
     }
 
+    public static String prompt() {
+        return in.nextLine();
+    }
+
     public static void printGreetMessage() {
         String logo = " _____    ______      \n"
                 + "|_   _|   |  _  \\     \n"
@@ -39,7 +43,7 @@ public class UI {
         printDividerLine();
     }
 
-    public static void handleUnknownCommand() {
+    public static void handleUnknownCommandMessage() {
         printDividerLine();
         System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         printDividerLine();
@@ -70,7 +74,7 @@ public class UI {
     public static void markTaskAsDoneMessage(String description) {
         printDividerLine();
         System.out.println("Nice! I've marked this task as done:");
-        System.out.println("[X] " + description);
+        System.out.println(description);
         printDividerLine();
     }
 
@@ -100,4 +104,9 @@ public class UI {
         printDividerLine();
     }
 
+    public static void invalidInputMessage() {
+        printDividerLine();
+        System.out.println("Invalid input!");
+        printDividerLine();
+    }
 }

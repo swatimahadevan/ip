@@ -1,3 +1,5 @@
+package storage;
+
 import task.Deadline;
 import task.Event;
 import task.Task;
@@ -28,13 +30,11 @@ public class Storage {
 
     public static ArrayList<Task> loadData() throws FileNotFoundException {
         File directory = new File(SAVEDIR);
-        if (!directory.exists()){
-            if (directory.mkdir()){
-                System.out.println("Successfully created a new directory for save file");
-            }
+        if (!directory.exists() && directory.mkdir()) {
+            System.out.println("Successfully created a new directory for save file");
         } else {
-            File f = new File(FILEPATH); // create a File for the given file path
-            Scanner s = new Scanner(f); // create a scanner using the file as the source
+            File f = new File(FILEPATH);
+            Scanner s = new Scanner(f);
             while (s.hasNext()) {
                 tasks.add(deserializeTask(s.nextLine()));
             }
@@ -66,6 +66,7 @@ public class Storage {
         }
         return task;
     }
+
     private static String serializeTask(Task task) {
         String result = "";
         result += task.getTaskType() + "|";
