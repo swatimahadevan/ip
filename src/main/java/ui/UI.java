@@ -116,4 +116,17 @@ public class UI {
         System.out.println("Type 0000 for the time if you don't want to include the time");
         printDividerLine();
     }
+
+    public static void printFindTasksList(ArrayList<Task> tasks) {
+        printDividerLine();
+        if (!tasks.isEmpty()) {
+            int i = 1;
+            for (Task item : tasks) {
+                System.out.println((i++) + ". " + item);
+            }
+        } else {
+            System.out.println("Could not find matching tasks!");
+        }
+        printDividerLine();
+    }
 }
