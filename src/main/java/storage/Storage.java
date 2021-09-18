@@ -12,14 +12,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Storage for writing and loading tasks from a save file.
+ */
 public class Storage {
     private static ArrayList<Task> tasks = new ArrayList<>();
     private static final String FILEPATH = "data/savedData.txt";
     private static final String SAVEDIR = "data";
 
-    public static void saveData(ArrayList<Task> tasks) throws IOException {
+    /**
+     * Serializes each task into a string and writes onto a save file.
+     *
+     * @param tasksList List of tasks
+     * @throws IOException If the system failed to write data onto save file
+     */
+    public static void saveData(ArrayList<Task> tasksList) throws IOException {
         StringBuilder line = new StringBuilder();
-        for (Task task: tasks) {
+        for (Task task: tasksList) {
             line.append(serializeTask(task));
         }
 
@@ -28,6 +37,13 @@ public class Storage {
         fw.close();
     }
 
+    /**
+     * Deserializes the tasks stored in the save file in string format
+     * and returns the entire list.
+     *
+     * @return List of tasks
+     * @throws FileNotFoundException If save file was not found
+     */
     public static ArrayList<Task> loadData() throws FileNotFoundException {
         File directory = new File(SAVEDIR);
         if (!directory.exists() && directory.mkdir()) {
