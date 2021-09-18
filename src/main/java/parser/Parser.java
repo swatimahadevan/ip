@@ -6,7 +6,7 @@ import task.TaskList;
 import ui.UI;
 
 /**
- * Parses user input for commands.
+ * Represents class that parses user input for commands.
  */
 public class Parser {
 

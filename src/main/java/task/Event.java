@@ -1,7 +1,7 @@
 package task;
 
 /**
- * Class for event tasks.
+ * Represents class for event tasks
  */
 public class Event extends Task {
     protected String at;

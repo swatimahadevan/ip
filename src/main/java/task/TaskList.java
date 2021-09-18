@@ -5,6 +5,10 @@ import exceptions.DukeInvalidArgumentException;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
 
+/**
+ * Represents the list of tasks and basic functionalities
+ * to be performed on the list.
+ */
 public class TaskList {
     private ArrayList<Task> tasks = new ArrayList<>();
 

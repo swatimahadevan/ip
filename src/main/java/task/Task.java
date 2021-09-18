@@ -1,7 +1,7 @@
 package task;
 
 /**
- * Task object class.
+ * Represents the Task object
  */
 public class Task {
     protected String description;

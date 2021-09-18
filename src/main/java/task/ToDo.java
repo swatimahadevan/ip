@@ -1,7 +1,7 @@
 package task;
 
 /**
- * Class for todo tasks.
+ * Represents class for todo tasks.
  */
 public class ToDo extends Task {
     public static final String type = "T";

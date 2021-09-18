@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Storage for writing and loading tasks from a save file.
+ * Represents storage for writing and loading tasks from a save file.
  */
 public class Storage {
     private static ArrayList<Task> tasks = new ArrayList<>();

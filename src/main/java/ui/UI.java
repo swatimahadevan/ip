@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Gives the user interface representations.
+ * Represents the user interface for Duke.
  */
 public class UI {
     private static Scanner in = new Scanner(System.in);
