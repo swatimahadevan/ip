@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Gives the user interface representations
+ * Gives the user interface representations.
  */
 public class UI {
     private static Scanner in = new Scanner(System.in);
@@ -15,7 +15,7 @@ public class UI {
     }
 
     /**
-     * Reads and returns the input from the user
+     * Reads and returns the input from the user.
      *
      * @return Input given by the user
      */
@@ -24,7 +24,7 @@ public class UI {
     }
 
     /**
-     * Prints the welcome message
+     * Prints the welcome message.
      */
     public static void printGreetMessage() {
         String logo = " _____    ______      \n"
@@ -40,7 +40,7 @@ public class UI {
     }
 
     /**
-     * Prints the exit message
+     * Prints the exit message.
      */
     public static void printByeMessage() {
         printDividerLine();
@@ -49,7 +49,7 @@ public class UI {
     }
 
     /**
-     * Prints message after task is added to list
+     * Prints message after task is added to list.
      *
      * @param tasksList List of tasks
      */
@@ -62,7 +62,7 @@ public class UI {
     }
 
     /**
-     * Prints message for invalid input by the user
+     * Prints message for invalid input by the user.
      */
     public static void printUnknownCommandMessage() {
         printDividerLine();
@@ -71,7 +71,7 @@ public class UI {
     }
 
     /**
-     * Prints all the tasks in the list
+     * Prints all the tasks in the list.
      *
      * @param tasksList List of tasks
      */
@@ -86,8 +86,8 @@ public class UI {
     }
 
     /**
-     * Prints message when user does not give the task description
-     * for todo, event, or deadline commands
+     * Prints error message when user does not give the task description
+     * for todo, event, or deadline commands.
      */
     public static void printNoDescriptionFoundMessage() {
         printDividerLine();
@@ -96,8 +96,8 @@ public class UI {
     }
 
     /**
-     * Prints message when user does not give the
-     * entire details for event or deadline commands
+     * Prints error message when user does not give the
+     * entire details for event or deadline commands.
      */
     public static void printInvalidNumberOfParametersMessage() {
         printDividerLine();
@@ -106,7 +106,7 @@ public class UI {
     }
 
     /**
-     * Prints message after task has been marked as completed
+     * Prints message after task has been marked as completed.
      *
      * @param description Task description
      */
@@ -118,8 +118,8 @@ public class UI {
     }
 
     /**
-     * Prints error message when user is trying
-     * to access task not in list
+     * Prints error message when user is trying to access task
+     * not in list.
      */
     public static void printTaskNotInListMessage() {
         printDividerLine();
@@ -128,7 +128,7 @@ public class UI {
     }
 
     /**
-     * Prints message after task has been deleted from list
+     * Prints message after task has been deleted from list.
      *
      * @param description Task description
      * @param size Size of ArrayList for tasks
@@ -143,7 +143,7 @@ public class UI {
 
     /**
      * Prints error message when data is not successfully
-     * written to the storage file
+     * written to the storage file.
      */
     public static void printFailToWriteMessage() {
         printDividerLine();
@@ -152,7 +152,7 @@ public class UI {
     }
 
     /**
-     * Prints error message when storage file not found
+     * Prints error message when storage file not found.
      */
     public static void printFileNotFoundMessage() {
         printDividerLine();
@@ -161,8 +161,8 @@ public class UI {
     }
 
     /**
-     * Prints list of tasks matching the keyword input by the user
-     * If a matching task cannot be found, prints a message
+     * Prints list of tasks matching the keyword input by the user.
+     * If a matching task cannot be found, prints a message.
      *
      * @param tasksList List of matching tasks
      */

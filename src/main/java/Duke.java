@@ -7,11 +7,18 @@ import ui.UI;
 
 import java.io.FileNotFoundException;
 
+/**
+ * Function for Duke class.
+ */
 public class Duke {
     private static final String FILEPATH = "data/saveData.txt";
     private Storage storage;
     private TaskList tasks;
 
+    /**
+     * Load save data if the save file exists.
+     * If file npt available, create one.
+     */
     public Duke(String filePath){
         storage = new Storage();
         try{
@@ -22,6 +29,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Parses user input and executes it until "bye" command is encountered.
+     */
     public void run(){
         UI.printGreetMessage();
         boolean isExit = false;
@@ -35,6 +45,10 @@ public class Duke {
             }
         }
     }
+
+    /**
+     * Main method that runs Duke when called.
+     */
     public static void main(String[] args) {
         new Duke(FILEPATH).run();
     }
