@@ -109,11 +109,17 @@ public class UI {
         System.out.println("Invalid input!");
         printDividerLine();
     }
-
-    public static void invalidDateTimeMessage() {
+    
+    public static void printFindTasksList(ArrayList<Task> tasks) {
         printDividerLine();
-        System.out.println("Date should be in the format of YYYY-MM-DD HHmm");
-        System.out.println("Type 0000 for the time if you don't want to include the time");
+        if (!tasks.isEmpty()) {
+            int i = 1;
+            for (Task item : tasks) {
+                System.out.println((i++) + ". " + item);
+            }
+        } else {
+            System.out.println("Could not find matching tasks!");
+        }
         printDividerLine();
     }
 }

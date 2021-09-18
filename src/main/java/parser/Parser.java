@@ -82,7 +82,12 @@ public class Parser {
             return new EventAndDeadlineCommand(TYPE, description, at);
         }
 
-        // default
+        if (input.startsWith("find")) {
+            String filter;
+            filter = input.split("find")[1].trim();
+            return new FindCommand(filter);
+        }
+
         return new UnknownCommand(input);
     }
 }
