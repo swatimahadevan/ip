@@ -18,14 +18,14 @@ public class TaskList {
 
     public void addToList(Task t) {
         tasks.add(t);
-        UI.addToListMessage(tasks);
+        UI.printAddTaskMessage(tasks);
     }
 
     public void deleteFromList(int index) {
         String deletedTask = tasks.get(index - 1).toString();
         tasks.remove(index - 1);
         int size = tasks.size();
-        UI.deleteTaskMessage(deletedTask, size);
+        UI.printDeleteTaskMessage(deletedTask, size);
     }
 
     public void markTaskAsDone(int index) throws DukeInvalidArgumentException {
@@ -35,7 +35,7 @@ public class TaskList {
             throw new DukeInvalidArgumentException();
         }
         String description = tasks.get(index - 1).toString();
-        UI.markTaskAsDoneMessage(description);
+        UI.printDoneMessage(description);
     }
 
     public ArrayList<Task> getTasks() {

@@ -13,7 +13,7 @@ public class ByeCommand extends Command {
             storage.saveData(tasks.getTasks());
             UI.printByeMessage();
         } catch (IOException e) {
-            UI.failToWriteMessage();
+            UI.printFailToWriteMessage();
         }
 
     }

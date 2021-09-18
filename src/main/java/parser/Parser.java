@@ -26,7 +26,7 @@ public class Parser {
             try {
                 index = Integer.parseInt(input.split("delete")[1].trim());
             }  catch (IndexOutOfBoundsException | NumberFormatException e) {
-                UI.taskNotInListMessage();
+                UI.printTaskNotInListMessage();
             }
             if(index < 1 || index > tasks.getTasks().size()){
                 throw new DukeInvalidArgumentException();
@@ -38,7 +38,7 @@ public class Parser {
             try {
                 description = input.trim().split("todo")[1].trim();
             } catch (IndexOutOfBoundsException e) {
-                UI.noDescriptionFoundMessage();
+                UI.printNoDescriptionFoundMessage();
                 throw new DukeInvalidArgumentException();
             }
             return new ToDoCommand(description);
@@ -49,7 +49,7 @@ public class Parser {
             try {
                 deadlineDetails = input.trim().split("deadline")[1];
             } catch (IndexOutOfBoundsException e) {
-                UI.noDescriptionFoundMessage();
+                UI.printNoDescriptionFoundMessage();
                 throw new DukeInvalidArgumentException();
             }
             String description, by;
@@ -57,7 +57,7 @@ public class Parser {
                 description = deadlineDetails.split("/by")[0].trim();
                 by = deadlineDetails.split("/by")[1].trim();
             } catch (IndexOutOfBoundsException e) {
-                UI.invalidNumberOfParametersMessage();
+                UI.printInvalidNumberOfParametersMessage();
                 throw new DukeInvalidArgumentException();
             }
             return new EventAndDeadlineCommand(TYPE, description, by);
@@ -68,7 +68,7 @@ public class Parser {
             try {
                 eventDetails = input.trim().split("event")[1];
             } catch (IndexOutOfBoundsException e) {
-                UI.noDescriptionFoundMessage();
+                UI.printNoDescriptionFoundMessage();
                 throw new DukeInvalidArgumentException();
             }
             String description, at;
@@ -76,7 +76,7 @@ public class Parser {
                 description = eventDetails.split("/at")[0].trim();
                 at = eventDetails.split("/at")[1].trim();
             } catch (IndexOutOfBoundsException e) {
-                UI.invalidNumberOfParametersMessage();
+                UI.printInvalidNumberOfParametersMessage();
                 throw new DukeInvalidArgumentException();
             }
             return new EventAndDeadlineCommand(TYPE, description, at);

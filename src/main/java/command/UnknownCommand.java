@@ -13,7 +13,7 @@ public class UnknownCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Storage storage) {
-        UI.handleUnknownCommandMessage();
+        UI.printUnknownCommandMessage();
     }
 
     @Override

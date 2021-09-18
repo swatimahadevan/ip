@@ -12,7 +12,7 @@ public class UI {
         System.out.println("____________________________________________________________");
     }
 
-    public static String prompt() {
+    public static String getUserInput() {
         return in.nextLine();
     }
 
@@ -35,7 +35,7 @@ public class UI {
         printDividerLine();
     }
 
-    public static void addToListMessage(ArrayList<Task> tasksList) {
+    public static void printAddTaskMessage(ArrayList<Task> tasksList) {
         printDividerLine();
         System.out.println("Got it. I've added this task:");
         System.out.println(tasksList.get(tasksList.size() - 1));
@@ -43,7 +43,7 @@ public class UI {
         printDividerLine();
     }
 
-    public static void handleUnknownCommandMessage() {
+    public static void printUnknownCommandMessage() {
         printDividerLine();
         System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         printDividerLine();
@@ -59,32 +59,32 @@ public class UI {
         printDividerLine();
     }
 
-    public static void noDescriptionFoundMessage() {
+    public static void printNoDescriptionFoundMessage() {
         printDividerLine();
         System.out.println("☹ OOPS!!! The description cannot be empty.");
         printDividerLine();
     }
 
-    public static void invalidNumberOfParametersMessage() {
+    public static void printInvalidNumberOfParametersMessage() {
         printDividerLine();
         System.out.println("☹ I cannot help you unless you provide the details!");
         printDividerLine();
     }
 
-    public static void markTaskAsDoneMessage(String description) {
+    public static void printDoneMessage(String description) {
         printDividerLine();
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(description);
         printDividerLine();
     }
 
-    public static void taskNotInListMessage() {
+    public static void printTaskNotInListMessage() {
         printDividerLine();
         System.out.println("☹ OOPS!!! No such item in the list :-(");
         printDividerLine();
     }
 
-    public static void deleteTaskMessage(String description, int size) {
+    public static void printDeleteTaskMessage(String description, int size) {
         printDividerLine();
         System.out.println("Got it! I've removed this task:");
         System.out.println(description);
@@ -92,19 +92,19 @@ public class UI {
         printDividerLine();
     }
 
-    public static void failToWriteMessage() {
+    public static void printFailToWriteMessage() {
         printDividerLine();
         System.out.println("Failed to write data");
         printDividerLine();
     }
 
-    public static void fileNotFoundMessage() {
+    public static void printFileNotFoundMessage() {
         printDividerLine();
         System.out.println("Error: save file not found");
         printDividerLine();
     }
 
-    public static void invalidInputMessage() {
+    public static void printInvalidInputMessage() {
         printDividerLine();
         System.out.println("Invalid input!");
         printDividerLine();

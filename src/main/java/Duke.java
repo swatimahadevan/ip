@@ -17,7 +17,7 @@ public class Duke {
         try{
             tasks = new TaskList(storage.loadData());
         } catch (FileNotFoundException e){
-            UI.fileNotFoundMessage();
+            UI.printFileNotFoundMessage();
             tasks = new TaskList();
         }
     }
@@ -27,12 +27,12 @@ public class Duke {
         boolean isExit = false;
         while(!isExit){
             try {
-                String input = UI.prompt();
+                String input = UI.getUserInput();
                 Command c = Parser.parse(tasks, input);
                 c.execute(tasks, storage);
                 isExit = c.isExit();
             } catch (DukeInvalidArgumentException e) {
-                UI.invalidInputMessage();
+                UI.printInvalidInputMessage();
             }
         }
     }
