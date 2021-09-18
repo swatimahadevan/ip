@@ -17,7 +17,7 @@ public class EventAndDeadlineCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Storage storage) {
+    public void execute(TaskList tasks, Storage storage){
         if (type.equals("event")) {
             Event event = new Event(description, timeOfEvent);
             tasks.addToList(event);
