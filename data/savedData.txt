@@ -1,0 +1,7 @@
+E|0|clay workshop|sunday
+T|1|sleep 8hrs
+T|0|sleep
+T|0|eat
+T|0|finish homework
+T|0|finish CS2113T homework
+T|0|finish deliverables for CS2113T project
