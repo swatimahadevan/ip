@@ -73,14 +73,14 @@ public class Storage {
         String description = splitTask[2].trim();
 
         switch (taskType) {
-            case "T":
+        case "T":
             task = new ToDo(description, isDone);
             break;
-            case "D":
+        case "D":
             String by = splitTask[3].trim();
             task = new Deadline(description, by, isDone);
             break;
-            case "E":
+        case "E":
             String at = splitTask[3].trim();
             task = new Event(description, at, isDone);
             break;
