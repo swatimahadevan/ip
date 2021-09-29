@@ -8,7 +8,7 @@ import ui.UI;
 import java.io.FileNotFoundException;
 
 /**
- * Function for Duke class.
+ * Represents Duke class.
  */
 public class Duke {
     private static final String FILEPATH = "data/saveData.txt";
@@ -16,7 +16,7 @@ public class Duke {
     private TaskList tasks;
 
     /**
-     * Load save data if the save file exists.
+     * Loads save data if the save file exists.
      * If file npt available, create one.
      */
     public Duke(String filePath){
